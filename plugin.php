@@ -15,6 +15,7 @@ class Plugin {
 	public function __construct() {
 
 		require_once( SABER_DOCS_PATH . '/inc/Doc.php' );
+		require_once( SABER_DOCS_PATH . '/inc/TaxonomyTree.php' );
 		require_once( SABER_DOCS_PATH . '/inc/post-types/doc.php' );
 		require_once( SABER_DOCS_PATH . '/inc/taxonomies/doc-category.php' );
 

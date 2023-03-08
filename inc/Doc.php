@@ -29,7 +29,7 @@ class Doc {
 		$this->parent_term = $terms[0];
 
 		// Build the taxonomy tree.
-		$tree = new \Composite\TaxonomyTree( 'doc-category', $this->parent_term->term_id );
+		$tree = new TaxonomyTree( 'doc-category', $this->parent_term->term_id );
 		$this->term_tree = $tree->build_taxonomy_tree();
 
 	}
