@@ -21,12 +21,25 @@ class Plugin {
 
 		add_filter( 'template_include', [$this, 'templates'] );
 
+		add_action('wp_enqueue_scripts', function() {
+			/**
+			 * Enqueue `docs-script` script only if the page is using the "Docs Page" template.
+			 *
+			 * This function checks if the current page is using the "Docs Page" template (page-docs.php)
+			 * and if it is, then the `docs-script` script is enqueued. The script is located in the
+			 * /js/docs.js file and is loaded in the footer for better performance.
+			 */
+			 if ( is_single() && get_post_type() === 'doc' ) {
+			 	wp_enqueue_script( 'docs-script', SABER_DOCS_URL . 'js/main.js', array( 'jquery' ), '1.0.0', true );
+			 }
+		});
+
 	}
 
 	public function templates( $template ) {
 
 		// Provide single template.
-    if ( is_single() && get_post_type() == 'doc' ) {
+    if ( is_single() && get_post_type() === 'doc' ) {
     	$template = SABER_DOCS_PATH . '/templates/single-doc.php';
     }
 

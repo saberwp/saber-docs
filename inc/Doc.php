@@ -5,6 +5,7 @@ namespace SaberDocs;
 class Doc {
 
 	public $index_page_id = 0;
+	public $doc_title     = '';
 	public $term_tree     = array();
 	public $parent_term   = null;
 	public $doc_pages     = array();
@@ -21,7 +22,11 @@ class Doc {
 		// Retrieve the current page ID.
 		$this->index_page_id = get_the_ID();
 
-		// Retrieve the "doc" taxonomy associated with the current page.
+		// Get index post.
+		$index_post = get_post( $this->index_page_id );
+		$this->doc_title = $index_post->post_title;
+
+		// Retrieve the "doc-category" taxonomy associated with the current page.
 		$terms = get_the_terms( $this->index_page_id, 'doc-category' );
 		if ( ! is_array( $terms ) || empty( $terms ) ) {
 			return false;
@@ -44,7 +49,7 @@ class Doc {
 
 		// Retrieve the pages under the parent term.
 		$parent_term_pages = get_posts( array(
-			'post_type' => 'page',
+			'post_type' => 'doc',
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'doc-category',
@@ -70,8 +75,7 @@ class Doc {
 
 	public function menuRender() {
 
-		$component_path = get_template_directory() . '/components/docs/docs-menu/component.php';
-		require_once( $component_path );
+		require_once( SABER_DOCS_PATH . '/templates/menu.php' );
 
 	}
 
