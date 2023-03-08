@@ -3,12 +3,12 @@
 function create_doc_post_type() {
     $labels = array(
         'name'               => __( 'Doc' ),
-        'singular_name'      => __( 'Solution' ),
+        'singular_name'      => __( 'Doc' ),
         'add_new'            => __( 'Add New' ),
-        'add_new_item'       => __( 'Add New Solution' ),
-        'edit_item'          => __( 'Edit Solution' ),
-        'new_item'           => __( 'New Solution' ),
-        'view_item'          => __( 'View Solution' ),
+        'add_new_item'       => __( 'Add New Doc' ),
+        'edit_item'          => __( 'Edit Doc' ),
+        'new_item'           => __( 'New Doc' ),
+        'view_item'          => __( 'View Doc' ),
         'search_items'       => __( 'Search Doc' ),
         'not_found'          => __( 'No docs found' ),
         'not_found_in_trash' => __( 'No docs found in trash' ),

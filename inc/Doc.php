@@ -22,14 +22,14 @@ class Doc {
 		$this->index_page_id = get_the_ID();
 
 		// Retrieve the "doc" taxonomy associated with the current page.
-		$terms = get_the_terms( $this->index_page_id, 'doc' );
+		$terms = get_the_terms( $this->index_page_id, 'doc-category' );
 		if ( ! is_array( $terms ) || empty( $terms ) ) {
 			return false;
 		}
 		$this->parent_term = $terms[0];
 
 		// Build the taxonomy tree.
-		$tree = new \Composite\TaxonomyTree( 'doc', $this->parent_term->term_id );
+		$tree = new \Composite\TaxonomyTree( 'doc-category', $this->parent_term->term_id );
 		$this->term_tree = $tree->build_taxonomy_tree();
 
 	}
@@ -47,7 +47,7 @@ class Doc {
 			'post_type' => 'page',
 			'tax_query' => array(
 				array(
-					'taxonomy' => 'doc',
+					'taxonomy' => 'doc-category',
 					'field'    => 'term_id',
 					'terms'    => $term_id,
 				),
